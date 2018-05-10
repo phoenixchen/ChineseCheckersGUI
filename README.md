@@ -14,7 +14,7 @@ Libraries used:
 gcc(mingw) + OpenCV
 
 for linux users:
-install gcc & opencv(2.x or 3.x) and recompile again.
+install gcc(c++ 11) & opencv(2.x or 3.x) and recompile again.
 
 special thanks to the cvui's author -- Dovyski
 https://github.com/Dovyski/cvui
