@@ -50,9 +50,9 @@ bool GameStart::printUI(char *chess,int thinkingtime,bool MCTScheck,bool RuleBas
     #ifdef WIN32
 
     if(playercount==2)
-        initchessTEST1v1(chess);
+        initchess1v1(chess);
     if(playercount==3)
-        initchessTEST1v1v1(chess);
+        initchess1v1v1(chess);
 
     int socket_order_with_array = 0;
     int max_clients = 6;
@@ -131,12 +131,12 @@ int undoturn=0;
 			mouse.y = cvui::mouse().y;
 			IsMouseClick = true;
 		}
-
+/*
         if(!IsFirstView)
             if(mouseclickchess!= -1)
                 cvui::printf(*frame, 175, 80, 0.4, 0xff0000, "mouse = (%d,%d) ; (%d)=> (%d,%d)", \
                 mouse.x,mouse.y,locatetransformrevers(mouseclickchess),coordinate.x[mouseclickchess],coordinate.y[mouseclickchess]);
-
+*/
 
         if(IsMouseClick)
             MouseClickAction(mouse,&IsMouseClick,&InvalidTo,&InvalidFrom,&jumpfinish,&mouseclickchess,coordinate,chess, \
@@ -191,8 +191,15 @@ int undoturn=0;
                 turn++;
             }
             if(order[turn]!=-1 && order[turn]!=0){
-                if(!AISendString(&AIfrom,&current,&head,&prev,chess,max_clients,client_socket,(order[turn]-1)+2))
-                    return true;
+                if(PlayWithHuman!=0){
+                    if(!AISendString(&AIfrom,&current,&head,&prev,chess,max_clients,client_socket,(order[turn]-1)+2))
+                        return true;
+                }
+                else{
+                    if(!AISendString(&AIfrom,&current,&head,&prev,chess,max_clients,client_socket,(order[turn]-1)+1))
+                        return true;
+                }
+
                 for(int j=0;j<max_clients;j++){
                     if(client_socket[j]!=0 && j!=(order[turn]-1))
                         GUISendString(&AIfrom,&current,&head,client_socket[j]);
@@ -343,14 +350,15 @@ void GameStart::DrawControlComponent(cv::Mat* frame,int* thinkingtime,bool* MCTS
                           bool *NeuralNetworkcheck,int *turncount,int *undoturn){
 
         int playercount = 2;
-
+/*
         if (cvui::button(*frame, 600 , 10 ,50, 50, "Undo")) {
 		}
-
+*/
         cvui::window(*frame, 670, 10, 400, 50, "notice:");
         cvui::rect(*frame, 671, 31 , 398, 28, 0xff0000);
 		cvui::text(*frame, 680 , 35, "Undo can only use one time every step.", 0.5);
 
+    /*
         cvui::printf(*frame , 20, 35, 0.6, 0xff0000, "ThinkingTime");
         cvui::printf(*frame , 80, 55, 0.4, 0xff0000, "(second)");
         cvui::trackbar(*frame , 150, 20, 400 ,thinkingtime, 10, 30);
@@ -361,7 +369,7 @@ void GameStart::DrawControlComponent(cv::Mat* frame,int* thinkingtime,bool* MCTS
             *undoturn = (*turncount)-1;
         if(*undoturn < 0)
             *undoturn = 0;
-
+    */
         cvui::rect(*frame, 670, 78 , 400, 20,0x0000ff, 0x2f2f2f);
         cvui::checkbox(*frame, 900, 80, "Neural Network", NeuralNetworkcheck);
 		cvui::checkbox(*frame, 800, 80, "Rule Base", RuleBasecheck);

@@ -103,10 +103,10 @@ int printUI(char * chess){
 void DrawControlComponent(cv::Mat* frame,int* thinkingtime,bool* MCTScheck, \
                           bool *RuleBasecheck,bool *NeuralNetworkcheck, \
                           int *playercount,cv::Mat *Hout,cv::Mat *Cout,int *PlayWithHuman,bool *GameStart){
-
+/*
         if (cvui::button(*frame, 600 , 10 ,50, 50, "Undo")) {
 		}
-
+*/
         cvui::text(*frame, 600 , 110, "Player:", 1.0);
 		if (cvui::button(*frame, 710 , 110 ,30, 30, " ")) {
             switch(*playercount){
@@ -248,11 +248,11 @@ void DrawControlComponent(cv::Mat* frame,int* thinkingtime,bool* MCTScheck, \
         cvui::window(*frame, 670, 10, 400, 50, "notice:");
         cvui::rect(*frame, 671, 31 , 398, 28, 0xff0000);
 		cvui::text(*frame, 680 , 35, "Look before you leap.", 0.5);
-
+/*
         cvui::printf(*frame , 20, 35, 0.6, 0xff0000, "ThinkingTime");
         cvui::printf(*frame , 80, 55, 0.4, 0xff0000, "(second)");
         cvui::trackbar(*frame , 150, 20, 400 ,thinkingtime, 10, 30);
-
+*/
         cvui::rect(*frame, 670, 78 , 400, 20,0x0000ff, 0x2f2f2f);
         cvui::checkbox(*frame, 900, 80, "Neural Network", NeuralNetworkcheck);
 		cvui::checkbox(*frame, 800, 80, "Rule Base", RuleBasecheck);

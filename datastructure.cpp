@@ -233,7 +233,8 @@ void MouseClickAction(cv::Point mouse,bool *IsMouseClick,bool *InvalidTo,bool *I
                                | abs(locatetransformrevers(i) - temp)==14){
                                 //若有旁邊有人可以當跳板
                                 if((chess[locatetransform(temp + (locatetransformrevers(i) - temp)/2)] == 1) || \
-                                   (chess[locatetransform(temp + (locatetransformrevers(i) - temp)/2)] == 2)){
+                                   (chess[locatetransform(temp + (locatetransformrevers(i) - temp)/2)] == 2) ||
+                                   (chess[locatetransform(temp + (locatetransformrevers(i) - temp)/2)] == 3)){
                                         //若跳躍的目的地沒有其他人
                                         if(chess[i] == 0){
                                             *current = (struct multijump *)malloc(sizeof(struct multijump));
@@ -456,7 +457,8 @@ bool AISendString(char * AIfrom,struct multijump ** current,struct multijump ** 
                 if(abs(*AIfrom - (*current)->node)==34 | abs(*AIfrom - (*current)->node)==20 \
                            | abs(*AIfrom - (*current)->node)==14){
                     if((chess[locatetransform(*AIfrom + ((*current)->node - *AIfrom)/2)] == 1) || \
-                       (chess[locatetransform(*AIfrom + ((*current)->node - *AIfrom)/2)] == 2)){
+                       (chess[locatetransform(*AIfrom + ((*current)->node - *AIfrom)/2)] == 2) ||
+                       (chess[locatetransform(*AIfrom + ((*current)->node - *AIfrom)/2)] == 3)){
                             if(chess[locatetransform((*current)->node)]==0){
                                 temp = chess[locatetransform(*AIfrom)];
                                 chess[locatetransform(*AIfrom)] = 0;
@@ -488,7 +490,8 @@ bool AISendString(char * AIfrom,struct multijump ** current,struct multijump ** 
                    | abs((*prev)->node - (*current)->node)==14){
                     //若有旁邊有人可以當跳板
                     if((chess[locatetransform((*prev)->node + ((*current)->node - (*prev)->node)/2)] == 1) || \
-                       (chess[locatetransform((*prev)->node + ((*current)->node - (*prev)->node)/2)] == 2)){
+                       (chess[locatetransform((*prev)->node + ((*current)->node - (*prev)->node)/2)] == 2) ||
+                       (chess[locatetransform((*prev)->node + ((*current)->node - (*prev)->node)/2)] == 3)){
                             //若跳躍的目的地沒有其他人
                             if(chess[locatetransform((*current)->node)] == 0){
                                 temp = chess[locatetransform((*prev)->node)];
