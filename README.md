@@ -11,5 +11,5 @@ C++
 Libraries used:
 gcc(mingw) + OpenCV
 
-special thanks the cvui's author -- Dovyski
+special thanks to the cvui's author -- Dovyski
 https://github.com/Dovyski/cvui
