@@ -190,7 +190,7 @@ int undoturn=0;
                 //do nothing
                 turn++;
             }
-            if(order[turn]!=-1 && order[turn]!=0){
+            if(order[turn]!=-1 && order[turn]!=0 && turn!=6){
                 if(PlayWithHuman!=0){
                     if(!AISendString(&AIfrom,&current,&head,&prev,chess,max_clients,client_socket,(order[turn]-1)+2))
                         return true;
